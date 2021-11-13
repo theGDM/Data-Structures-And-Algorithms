@@ -50,7 +50,6 @@ public class Any_Base_Multiplication {
         mul1 *= 10;
         temp = temp / 10;
       }
-      System.out.println(res);
       finalRes = getSum(b,finalRes,res*mul2);
       n2=n2/10;
       mul2=mul2*10;
