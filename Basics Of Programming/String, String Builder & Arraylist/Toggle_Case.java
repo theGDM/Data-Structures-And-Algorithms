@@ -10,9 +10,9 @@ public class Toggle_Case {
             char ch = str.charAt(i);
             
             if( ch >= 'a' && ch <= 'z'){
-                res = res + (char)(ch - 32);//explicit type asting
+                res = res + (char)(ch - 32);//explicit type casting
             }else{
-                res = res + (char)(ch + 32);//explicit type asting
+                res = res + (char)(ch + 32);//explicit type casting
             }
         }
 		return res;
