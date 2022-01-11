@@ -8,7 +8,7 @@ public class Ring_Rotate {
     int n = scn.nextInt();
     int m = scn.nextInt();
 
-    //matrix declaration and initialisation 
+    // matrix declaration and initialisation
     int[][] mat = new int[n][m];
 
     for (int i = 0; i < n; ++i) {
@@ -17,9 +17,8 @@ public class Ring_Rotate {
       }
     }
 
-    int s = scn.nextInt();//shell of number
-    int r = scn.nextInt();//number of rotates
-
+    int s = scn.nextInt();// shell of number
+    int r = scn.nextInt();// number of rotates
 
     for (int i = 0; i < r; ++i) {
       int frow = s - 1, fcol = s - 1;
@@ -55,6 +54,6 @@ public class Ring_Rotate {
       }
       System.out.println();
     }
-  } 
+  }
 
 }
