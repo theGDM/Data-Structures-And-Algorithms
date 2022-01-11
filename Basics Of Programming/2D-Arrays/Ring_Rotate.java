@@ -8,47 +8,53 @@ public class Ring_Rotate {
     int n = scn.nextInt();
     int m = scn.nextInt();
 
-    //matrix declaration and initialisation
+    //matrix declaration and initialisation 
     int[][] mat = new int[n][m];
 
-    //getting element in matrix
-    for (int i = 0; i < mat.length; ++i) {
-      for (int j = 0; j < mat[0].length; ++j) {
+    for (int i = 0; i < n; ++i) {
+      for (int j = 0; j < m; ++j) {
         mat[i][j] = scn.nextInt();
       }
     }
 
-    //left -> 0, bottom -> 1, left -> 2, top -> 3
-    int currCol = 0, currRow = 0;
-    int prevCol = 0,prevRow = 0;
-    int dir = 0;
+    int s = scn.nextInt();//shell of number
+    int r = scn.nextInt();//number of rotates
 
-    while ((currRow <= 0 || currRow < n) && (currCol <= 0 || currCol < m)){
-      //changing direction when we get 1
-      if (mat[currRow][currCol] == 1) {
-        dir = (dir + 1) % 4;
+
+    for (int i = 0; i < r; ++i) {
+      int frow = s - 1, fcol = s - 1;
+      int lrow = n - s, lcol = m - s;
+      int temp = mat[frow][fcol];
+      for (int p = fcol; p < lcol; ++p) {
+        mat[frow][p] = mat[frow][p + 1];
       }
-      
-       //maitaining previous row and col
-       prevRow = currRow;
-       prevCol = currCol;
-       
-      //traversing along direction
-      if (dir == 0) {
-        ++currCol; //left
-      } else if (dir == 1) {
-        ++currRow; //bottom
-      } else if (dir == 2) {
-        --currCol; //right
-      } else {
-        --currRow; //top
+
+      for (int j = frow; j < lrow; ++j) {
+        mat[j][lcol] = mat[j + 1][lcol];
       }
+
+      for (int k = lcol; k > fcol; --k) {
+        mat[lrow][k] = mat[lrow][k - 1];
+      }
+
+      for (int l = lrow; l > frow + 1; --l) {
+        mat[l][fcol] = mat[l - 1][fcol];
+      }
+
+      mat[frow + 1][fcol] = temp;
     }
 
-    //printing exit point
-    System.out.println(prevRow);
-    System.out.println(prevCol);
+    display(mat);
     scn.close();
   }
+
+  public static void display(int[][] mat) {
+    for (int i = 0; i < mat.length; ++i) {
+      for (int j = 0; j < mat[0].length; ++j) {
+        System.out.print(mat[i][j] + " ");
+      }
+      System.out.println();
+    }
+  } 
 
 }
