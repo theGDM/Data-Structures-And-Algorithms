@@ -25,20 +25,20 @@ public class Main {
   }
 
   public static int[] solve(int[] arr) {
-    int[] nge = new int[arr.length];
-    Arrays.fill(nge, -1);
-    Stack<Integer> stk = new Stack<>();
-      
-    for(int i = 0;i < arr.length; ++i){
-        //pop smaller elements to the left
-        //popped element's nge is our index
-        while(stk.size() > 0 && arr[stk.peek()] < arr[i]){
-            nge[stk.pop()] = arr[i];
-        }
-        //push ourself to find our nge to the right
-        stk.push(i);
-    }
-    return nge; 
+   int[] nge = new int[arr.length];
+   Arrays.fill(nge, -1);
+   Stack<Integer> stk = new Stack<>();
+   for(int i = 0;i < arr.length; ++i){
+       while(stk.size() > 0 && arr[stk.peek()] < arr[i]){
+          //pop smaller elements to the left
+          //popped elements' next greater element is current index value
+          int idx = stk.pop();
+          nge[idx] = arr[i];
+       }
+       //now push ourself to find our nge to the right;
+       stk.push(i);
+   }
+   return nge;
   }
 
 }
