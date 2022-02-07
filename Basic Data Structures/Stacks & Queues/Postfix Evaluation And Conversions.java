@@ -19,15 +19,18 @@ public static void main(String[] args) throws Exception {
             //infix work
             int val2 = valueStack.pop();
             int val1 = valueStack.pop();
-            valueStack.push(operation(val1, operator, val2));
+            int res = operation(val1, operator, val2);
+            valueStack.push(res);
             //infix work
-            String str2 = infixStack.pop();
-            String str1 = infixStack.pop();
-            infixStack.push("(" + str1 + operator + str2 + ")");
+            String infixV2 = infixStack.pop();
+            String infixV1 = infixStack.pop();
+            String infixRes = "(" + infixV1+ operator + infixV2 + ")";
+            infixStack.push(infixRes);
             //prefix work
-            String str4 = prefixStack.pop();
-            String str3 = prefixStack.pop();
-            prefixStack.push(operator + str3 + str4);
+            String prefixV2 = prefixStack.pop();
+            String prefixV1 = prefixStack.pop();
+            String prefixRes = operator + prefixV1 + prefixV2;
+            prefixStack.push(prefixRes);
         }else{
             valueStack.push(ch - '0');
             infixStack.push(ch + "");
