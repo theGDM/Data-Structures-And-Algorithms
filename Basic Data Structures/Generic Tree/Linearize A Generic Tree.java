@@ -152,7 +152,7 @@ public class Main {
       linearize(child);
     }
 
-    //meeting expectation with faith
+    //meeting expectation with faith (our work in node ke postorder me)
     for(int i = node.children.size() - 2; i >= 0; --i){
       Node child = node.children.get(i);
       Node curr = child;
