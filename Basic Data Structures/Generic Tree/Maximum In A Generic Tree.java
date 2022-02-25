@@ -1,10 +1,11 @@
 import java.io.*;
+
 import java.util.*;
 
 public class Main {
   private static class Node {
     int data;
-    ArrayList<Node> children = new ArrayList<>();
+    ArrayList< Node> children = new ArrayList< >();
   }
 
   public static void display(Node node) {
@@ -23,7 +24,7 @@ public class Main {
   public static Node construct(int[] arr) {
     Node root = null;
 
-    Stack<Node> st = new Stack<>();
+    Stack< Node> st = new Stack< >();
     for (int i = 0; i < arr.length; i++) {
       if (arr[i] == -1) {
         st.pop();
@@ -56,9 +57,20 @@ public class Main {
   }
 
   public static int max(Node node) {
-    int max = node.data;
-    for (Node child : node.children) {
-      max = Math.max(max, max(child));
+    if(node.children.size() == 0){
+        return node.data; //node having 0 children
+    }
+    
+    int max = Math.MIN_VALUE;
+    for(Node child : node.children){
+        int tmax = max(child); //faith -> sabhi root ke children apni apni subtree ka maximum
+        if(tmax > max){        //element le aaye
+            max = tmax;
+        }
+    }
+    //meeting expectation with faith(children AL me jo bhi max tha aur root ke data me jo bhi max ho)
+    if(node.data > max){
+        max = node.data;
     }
     return max;
   }
