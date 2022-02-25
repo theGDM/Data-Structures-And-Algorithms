@@ -62,11 +62,16 @@ public class Main {
   }
 
   public static int size(Node node){
-    int count = 1;
-    for(Node child : node.children){
-      count += size(child);
+    //Base case
+    if(node == null){ //no tree
+      return 0;
     }
-    return count;
+
+    int count = 0;
+    for(Node child : node.children){
+      count = count + size(child); //faith -> get size of subtrees whose root are the child
+    }                              //of root tree.
+    return count + 1; //add root node too//meeting expectation
   }
 
   public static void main(String[] args) throws Exception {
@@ -83,4 +88,5 @@ public class Main {
     System.out.println(sz);
     // display(root);
   }
+
 }
