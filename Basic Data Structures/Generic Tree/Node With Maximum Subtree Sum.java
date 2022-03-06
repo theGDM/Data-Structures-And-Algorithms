@@ -56,8 +56,8 @@ public class Main {
       cSum += sum(child);//getting sum of all subtrees rooted at current node
     }
 
-    cSum += node.data;
-    if(cSum > maxS){
+    cSum += node.data;//adding current node data to cSum of subtree in post order
+    if(cSum > maxS){ //checking whether cSum is greater than maxS
       maxS = cSum;
       maxNodeS = node.data;
     }
