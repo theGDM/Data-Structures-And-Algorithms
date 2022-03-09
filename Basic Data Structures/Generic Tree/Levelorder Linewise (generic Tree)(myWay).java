@@ -117,7 +117,9 @@ public class Main {
       for(Node child : rnode.children){ //add
         childQ.add(child);
       }
-
+      
+      //if mainQ size becomes 0, that means our one level is completed, so we need to hit enter, to go in the next line, and refill the mainQ with the elements
+      //of the childQ.
       if(mainQ.size() == 0){
         System.out.println();
         while(childQ.size() > 0){
