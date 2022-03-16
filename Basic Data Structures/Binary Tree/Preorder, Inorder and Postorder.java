@@ -113,10 +113,6 @@ public class Main {
     System.out.print(node.data + " ");
   }
 
-  public static void levelOrder(Node node) {
-    
-  }
-
   public static void main(String[] args) throws Exception {
     BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
     int n = Integer.parseInt(br.readLine());
