@@ -111,8 +111,8 @@ public class Main {
 
     int lHeight = height(node.left); //faith -> getting height of left subtree
     int rHeight = height(node.right); //faith -> gettingheight of right subtree
-    int height = Math.max(lHeight, rHeight);
-    return height + 1;
+    int height = Math.max(lHeight, rHeight) + 1;
+    return height;
   }
 
   public static void main(String[] args) throws Exception {
