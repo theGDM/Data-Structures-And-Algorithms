@@ -52,13 +52,24 @@ public class fibonacci {
         System.out.println(dp[n]);
     }
 
+    public static void so(int n) {
+        int prev = 1, sprev = 0;
+        for (int i = 2; i <= n; ++i) {
+            int curr = prev + sprev;
+            sprev = prev;
+            prev = curr;
+        }
+        System.out.println(prev);
+    }
+
     public static void main(String[] args) throws Exception {
         Scanner scn = new Scanner(System.in);
         int n = scn.nextInt();
 
         // recursive(n);
         // memoization(n);
-        tabulation(n);
+        // tabulation(n);
+        so(n);
         scn.close();
     }
 
