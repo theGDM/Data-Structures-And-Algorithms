@@ -56,7 +56,7 @@ public class Main {
         // int res = mazeMinCost(0, 0, n, m, maze);
         // System.out.println(res);
 
-        //memoization
+        //memoization T.C : o(n^2) S.C. : o(n^2)
         // int[][] dp = new int[n][m];
         // for(int i = 0;i < n; ++i){
         //     Arrays.fill(dp[i], -1);
@@ -65,28 +65,59 @@ public class Main {
         // int res = memoMazeMinCost(0, 0, n, m, maze, dp);
         // System.out.println(res);
 
-        //tabulation
-        int[][] dp = new int[n][m];
-        for(int r = n - 1;r >= 0; --r){
+        //tabulation T.C : o(n^2) S.C. : o(n^2)
+        // int[][] dp = new int[n][m];
+        // for(int r = n - 1;r >= 0; --r){
+        //     for(int c = m - 1;c >= 0; --c){
+        //         if(r == n - 1 && c == m - 1){
+        //             dp[r][c] = maze[r][c];
+        //             continue;
+        //         }
+
+        //         int ans = Integer.MAX_VALUE;
+        //         if(r + 1 <= n - 1){
+        //             ans = Math.min(ans, dp[r + 1][c]);
+        //         }
+                
+        //         if(c + 1 <= m - 1){
+        //             ans = Math.min(ans, dp[r][c + 1]);
+        //         }
+                
+        //         dp[r][c] = ans + maze[r][c];
+        //     }
+        // }
+
+        // System.out.println(dp[0][0]);
+        // for(int r = 0;r < n; ++r){
+        //     for(int c = 0;c < m; ++c){
+        //       System.out.print(dp[r][c] + " ");  
+        //     }
+        //     System.out.println();
+        // }
+
+        //space optimiztion T.C : o(n^2) S.C. : o(n)
+        int[] dp = new int[m];
+        dp[m - 1] = maze[n - 1][m - 1];
+        for(int c = m - 2;c >= 0; --c){
+            dp[c] += dp[c + 1] + maze[n - 1][c];
+        }
+
+        for(int r = n - 2;r >= 0; --r){
             for(int c = m - 1;c >= 0; --c){
-                if(r == n - 1 && c == m - 1){
-                    dp[r][c] = maze[r][c];
-                    continue;
-                }
 
                 int ans = Integer.MAX_VALUE;
                 if(r + 1 <= n - 1){
-                    ans = Math.min(ans, dp[r + 1][c]);
+                    ans = Math.min(ans, dp[c]);
                 }
                 
                 if(c + 1 <= m - 1){
-                    ans = Math.min(ans, dp[r][c + 1]);
+                    ans = Math.min(ans, dp[c + 1]);
                 }
                 
-                dp[r][c] = ans + maze[r][c];
+                dp[c] = ans + maze[r][c];
             }
         }
 
-        System.out.println(dp[0][0]);
+        System.out.println(dp[0]);
     }
 }
