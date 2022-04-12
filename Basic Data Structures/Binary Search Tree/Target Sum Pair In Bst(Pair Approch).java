@@ -93,24 +93,24 @@ public class Main {
 
   //T.C. = O(n) : S.C. = O(log(n))
   public static void targetSumPair(Node node, int target){
-    Stack<ITpair> ls = new Stack<>();
-    Stack<ITpair> rs = new Stack<>();
+    Stack<ITpair> inc = new Stack<>();
+    Stack<ITpair> dec = new Stack<>();
 
-    ls.push(new ITpair(node, 0));
-    rs.push(new ITpair(node, 0));
+    inc.push(new ITpair(node, 0));
+    dec.push(new ITpair(node, 0));
 
-    Node left = getNodeFromNormalInorder(ls);
-    Node right = getNodeFromReverseInorder(rs);
+    Node left = getNodeFromNormalInorder(inc);
+    Node right = getNodeFromReverseInorder(dec);
 
     while(left.data < right.data){
       if(left.data + right.data < target){
-        left = getNodeFromNormalInorder(ls);
+        left = getNodeFromNormalInorder(inc);
       }else if(left.data + right.data > target){
-        right = getNodeFromReverseInorder(rs);
+        right = getNodeFromReverseInorder(dec);
       }else{
         System.out.println(left.data + " " + right.data);
-        left = getNodeFromNormalInorder(ls);
-        right = getNodeFromReverseInorder(rs);
+        left = getNodeFromNormalInorder(inc);
+        right = getNodeFromReverseInorder(dec);
       }
     }
   }
