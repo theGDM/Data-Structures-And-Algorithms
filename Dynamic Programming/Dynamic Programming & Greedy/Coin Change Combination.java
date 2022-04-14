@@ -2,21 +2,6 @@ import java.io.*;
 import java.util.*;
 
 public class Main {
-    // Wrong approach
-    // public static int coinChange(int[] denom, int amt){
-    //     if(amt == 0){
-    //         return 1;
-    //     }
-
-    //     int ans = 0;
-    //     for(int i = 0;i < denom.length; ++i){
-    //         if(amt - denom[i] >= 0){
-    //             ans += coinChange(denom, amt - denom[i]);
-    //         }
-    //     }
-
-    //     return ans;
-    // }
 
     public static int coinChange(int n, int[] denom, int amt, int idx){
         if(idx == n){
@@ -28,13 +13,36 @@ public class Main {
         }
 
         int ans = 0;
-        if(amt >= denom[idx]){
+        if(amt - denom[idx]>= 0){
             ans += coinChange(n, denom, amt - denom[idx], idx);
         }
 
         ans += coinChange(n, denom, amt, idx + 1);
 
         return ans;
+    }
+
+    public static int coinChangeMemo(int n, int[] denom, int amt, int idx, int[][] dp){
+        if(idx == n){
+            if(amt == 0){
+                return dp[idx][amt] = 1;
+            }else{
+                return dp[idx][amt] = 0;
+            }
+        }
+
+        if(dp[idx][amt] != 0){
+            return dp[idx][amt];
+        }
+
+        int ans = 0;
+        if(amt - denom[idx]>= 0){
+            ans +=coinChangeMemo(n, denom, amt - denom[idx], idx, dp);
+        }
+
+        ans += coinChangeMemo(n, denom, amt, idx + 1, dp);
+
+        return dp[idx][amt] = ans;
     }
 
     public static void main(String[] args) throws Exception {
@@ -52,9 +60,14 @@ public class Main {
         // int res = coinChange(n, denom, amt, 0);
         // System.out.println(res);
 
+        // memoization
+        // int[][] dp = new int[n + 1][amt + 1];
+        // int res = coinChangeMemo(n, denom, amt, 0, dp);
+        // System.out.println(res); 
+
         // tabulation
         int[][] dp = new int[n + 1][amt + 1];
-        for(int idx = n; idx >= n; --idx){
+        for(int idx = n; idx >= 0; --idx){
             for(int a = 0; a <= amt; ++a){
                 if(idx == n){
                     if(a == 0){
@@ -67,7 +80,7 @@ public class Main {
                 }
 
                 int ans = 0;
-                if(amt >= denom[idx]){
+                if(a >= denom[idx]){
                     ans += dp[idx][a - denom[idx]];
                 }
 
@@ -75,9 +88,7 @@ public class Main {
 
                 dp[idx][a] = ans;
             }
-
-            System.out.println(dp[0][amt]);
         }
-        
+        System.out.println(dp[0][amt]);
     }
 }
