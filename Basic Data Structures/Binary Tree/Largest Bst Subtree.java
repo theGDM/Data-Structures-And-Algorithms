@@ -83,10 +83,10 @@ public class Main {
     boolean isBST;
     int min;
     int max;
-    int total;
+    int size;
   }
 
-  public static Node largestBSTRoot;
+  public static Node largestBSTRoot = null;
   public static int count = 0;
  
   public static BSTpair largestBST(Node node){
@@ -95,7 +95,7 @@ public class Main {
       base.isBST = true;
       base.min = Integer.MAX_VALUE;
       base.max = Integer.MIN_VALUE;
-      base.total = 0;
+      base.size = 0;
       return base;
     }
 
@@ -106,14 +106,13 @@ public class Main {
     curr.isBST = lans.isBST && rans.isBST && (lans.max < node.data && rans.min > node.data);
     curr.max = Math.max(node.data, Math.max(lans.max, rans.max));
     curr.min = Math.min(node.data, Math.min(lans.min, rans.min));
-    curr.total = (lans.total + rans.total) + 1; 
+    curr.size = (lans.size + rans.size) + 1; 
 
-    if(curr.isBST && count < curr.total){
+    if(curr.isBST && count < curr.size){
       largestBSTRoot = node;
-      count = curr.total;
+      count = curr.size;
     }
 
-    //System.out.println(node.data + " " + curr.isBST + " " + curr.min + " " + curr.max + " " + curr.total);
     return curr;
   }
   
