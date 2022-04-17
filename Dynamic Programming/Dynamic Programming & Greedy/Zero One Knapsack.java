@@ -2,6 +2,9 @@ import java.io.*;
 import java.util.*;
 
 public class Main {
+    //every weight have 2 choices whether to come in or not. so har bar hum aange badh rahe hai
+    //yadi hum us wicket ko include karte hai to bhi, aur usko include nahi karte to bhi, aange 
+    //badh rahe hai, kyuki har weight ko kebal ek baar hi use kar sakte;
     public static int knapsack(int n, int[] v, int[] w, int cap, int idx){
         //base case
         if(idx == n || cap == 0){
@@ -63,7 +66,7 @@ public class Main {
         int[][] dp = new int[n + 1][cap + 1];
         for(int idx = n; idx >= 0; --idx){
             for(int c = 0; c <= cap; ++c){
-                if(idx == n || cap == 0){
+                if(idx == n || c == 0){
                     dp[idx][c] = 0;
                     continue;
                 }
