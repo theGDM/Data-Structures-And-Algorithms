@@ -51,10 +51,10 @@ public class Main {
             ++compCount;
          }
       }
-      if(compCount != 1){ //1 means only 1 component, if more than one component that means graph is not connected
-         System.out.println(false);
-      }else{ 
+      if(compCount == 1){ //1 means only 1 component, if more than one component that means graph is not connected
          System.out.println(true);
+      }else{ 
+         System.out.println(false);
       }
    }
 }
