@@ -35,21 +35,22 @@ public class Main {
 
       int src = Integer.parseInt(br.readLine());
       boolean[] visited = new boolean[vtces];
-      pathAndCycle(src, src, vtces, graph, visited, "" + src);
+      pathAndCycle(src, src, graph, visited, "" + src);
    }
 
-   public static void pathAndCycle(int startPoint, int src, int tVtces, ArrayList<Edge>[] graph, boolean[] visited, String psf){
-      if(psf.length() == tVtces){
-         int flag = 0;
+   public static void pathAndCycle(int startPoint, int src, ArrayList<Edge>[] graph, boolean[] visited, String psf){
+      if(psf.length() == graph.length){
+         boolean isCycle = false;
          //checking if the last added vertex has src vertex in its neighbour, if so it is the hamiltonian cycle
          //else hamiltonian path
          for(Edge e : graph[src]){
             if(e.nbr == startPoint){
-               flag = 1;
+               isCycle = true;
+               break;
             }
          }
 
-         if(flag == 1){
+         if(isCycle){
             System.out.println(psf + "*");
          }else{
             System.out.println(psf + ".");
@@ -60,7 +61,7 @@ public class Main {
       visited[src] = true;
       for(Edge e : graph[src]){
          if(visited[e.nbr] != true){
-            pathAndCycle(startPoint, e.nbr, tVtces, graph, visited, psf + e.nbr);
+            pathAndCycle(startPoint, e.nbr, graph, visited, psf + e.nbr);
          }
       }
       visited[src] = false;
