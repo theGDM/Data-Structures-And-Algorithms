@@ -41,8 +41,9 @@ public class Main {
    public static void pathAndCycle(int startPoint, int src, int tVtces, ArrayList<Edge>[] graph, boolean[] visited, String psf){
       if(psf.length() == tVtces){
          int flag = 0;
-         int dest = psf.charAt(psf.length() - 1) - '0';
-         for(Edge e : graph[dest]){
+         //checking if the last added vertex has src vertex in its neighbour, if so it is the hamiltonian cycle
+         //else hamiltonian path
+         for(Edge e : graph[src]){
             if(e.nbr == startPoint){
                flag = 1;
             }
