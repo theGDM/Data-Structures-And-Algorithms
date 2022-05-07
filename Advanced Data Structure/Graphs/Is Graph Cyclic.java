@@ -35,6 +35,7 @@ public class Main {
 
      boolean[] vis = new boolean[vtces];
      boolean hasCycle = false;
+     // what if there are components in graph
      for(int i = 0;i < vtces; ++i){
         if(vis[i] != true){
            hasCycle = isCyclic(i, graph, vis);
