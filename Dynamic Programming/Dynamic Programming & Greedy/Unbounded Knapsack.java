@@ -67,7 +67,6 @@ import java.io.*;
 						dp[idx][c] = 0;
 						continue;
 					}
-			
 					int inc = 0, exc = 0;
 					if(c - wt[idx] >= 0){
 						inc = dp[idx][c - wt[idx]] + val[idx];
