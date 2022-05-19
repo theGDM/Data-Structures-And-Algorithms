@@ -29,7 +29,6 @@ public class Inverted_Heart {
             }
             System.out.println();
         }
-
         scn.close();
     }
 }
