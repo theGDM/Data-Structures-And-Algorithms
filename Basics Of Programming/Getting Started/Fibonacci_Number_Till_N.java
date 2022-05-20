@@ -1,6 +1,5 @@
 //Printing fibonacci series till number N
 import java.util.*;
-
 public class Fibonacci_Number_Till_N {
     public static void main(String[] args) {
     // write your code here
