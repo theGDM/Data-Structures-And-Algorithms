@@ -2,7 +2,6 @@ import java.io.*;
 import java.util.*;
 
 public class Main {
-
     public static int climbStair(int idx, int n, int[] jumps){
         if(idx == n){
             return 1;
