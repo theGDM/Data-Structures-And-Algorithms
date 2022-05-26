@@ -10,7 +10,6 @@ public class Main {
         for(int i = 0;i < n; ++i){
             prices[i] = scn.nextInt();
         }
-
         //if there is not dip we keep increasing sp, but when we got first dip
         //then we first update the op and then move sp and bp together till the
         //increse in price
