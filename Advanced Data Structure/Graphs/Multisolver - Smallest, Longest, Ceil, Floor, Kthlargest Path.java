@@ -13,7 +13,8 @@ public class Main {
          this.wt = wt;
       }
    }
-
+   
+   //2 pair classes ke object kaise compare kiye jaaye, jo weight ke hisab se
    static class Pair implements Comparable<Pair> {
       int wsf;
       String psf;
