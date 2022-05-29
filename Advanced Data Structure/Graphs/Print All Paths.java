@@ -16,14 +16,14 @@ public class Main {
 
    public static void printPath(int src, int dest, ArrayList<Edge>[] graph, boolean[] visited, String psf){
       if(src == dest){
-         System.out.println(psf + dest);
+         System.out.println(psf);
          return;
       }
 
-      visited[src] = true;
+      visited[src] = true; 
       for(Edge e : graph[src]){
          if(visited[e.nbr] != true){
-            printPath(e.nbr, dest, graph, visited, psf + src);
+            printPath(e.nbr, dest, graph, visited, psf + e.nbr);
          }
       }
       visited[src] = false;
@@ -54,7 +54,7 @@ public class Main {
 
       // write all your codes here
       boolean[] visited = new boolean[vtces];
-      printPath(src, dest, graph, visited, "");
+      printPath(src, dest, graph, visited, src + "");
    }
 
 
