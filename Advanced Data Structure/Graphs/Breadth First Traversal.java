@@ -37,13 +37,14 @@ public class Main {
       q.add(new Pair(src, "" + src));
 
       while(q.size() != 0){
+         //r m* w a*
          Pair rVtce = q.remove(); //remove
          if(visited[rVtce.src] == true){
             continue;
          }
 
          visited[rVtce.src] = true; //mark visited
-         System.out.println(rVtce.src + "@" + rVtce.psf); //print
+         System.out.println(rVtce.src + "@" + rVtce.psf); //work (print)
          
          for(Edge e : graph[rVtce.src]){ //add all the unvisited child
             if(visited[e.nbr] == false){
