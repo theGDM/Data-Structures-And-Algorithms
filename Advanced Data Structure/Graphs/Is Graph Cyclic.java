@@ -14,6 +14,8 @@ public class Main {
       }
    }
 
+   
+
    public static void main(String[] args) throws Exception {
       BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
@@ -33,36 +35,39 @@ public class Main {
          graph[v2].add(new Edge(v2, v1, wt));
       }
 
-     boolean[] vis = new boolean[vtces];
-     boolean hasCycle = false;
-     // what if there are components in graph
-     for(int i = 0;i < vtces; ++i){
-        if(vis[i] != true){
-           hasCycle = isCyclic(i, graph, vis);
-           if(hasCycle == true){
-              break;
-           }
-        }
-     }
-     System.out.println(hasCycle);
+      // write your code here
+      boolean[] visited = new boolean[vtces];
+      for(int v = 0; v < vtces; ++v){
+         if(visited[v] != true){
+            boolean isCycle = isCyclic(v, graph, visited);
+            if(isCycle){
+               System.out.println(true);
+               return;
+            }
+         }
+      }
+      System.out.println(false);
    }
 
-   public static boolean isCyclic(int src, ArrayList<Edge>[] graph, boolean[] vis){
+   public static boolean isCyclic(int src, ArrayList<Edge>[] graph, boolean[] visited){
       Queue<Integer> q = new ArrayDeque<>();
       q.add(src);
 
       while(q.size() != 0){
-         Integer rSrc = q.remove(); //remove
-         if(vis[rSrc] == true){
+         int rSrc = q.remove(); //remove
+         if(visited[rSrc] == true){ //cycle detected
             return true;
          }
-         vis[rSrc] = true; //mark true
-         for(Edge e : graph[rSrc]){ //add all its child vtces
-            if(vis[e.nbr] == false){
+
+         visited[rSrc] = true; //mark visited
+
+         for(Edge e : graph[src]){ //add all unvisited nbrs
+            if(visited[e.nbr] == false){
                q.add(e.nbr);
             }
          }
       }
+
       return false;
    }
 }
