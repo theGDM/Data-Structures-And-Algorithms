@@ -46,11 +46,6 @@ public class Main {
       int[] visited = new int[vtces];
       Arrays.fill(visited, -1);
 
-      int countOfInfected = countInfected(src, t, graph, visited);
-      System.out.println(countOfInfected);
-   }
-
-   public static int countInfected(int src, int t, ArrayList<Edge>[] graph, int[] visited){
       Queue<Pair> q = new ArrayDeque<>();
       q.add(new Pair(src, 1));
       int count = 0;
@@ -74,7 +69,6 @@ public class Main {
             }
          }
       }
-
-      return count;
+      System.out.println(count); 
    }
 }
