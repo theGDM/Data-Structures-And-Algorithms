@@ -45,6 +45,7 @@ public class Main {
       
       int[] visited = new int[vtces];
       Arrays.fill(visited, -1);
+      //we will add the time at which any person gets infected
 
       Queue<Pair> q = new ArrayDeque<>();
       q.add(new Pair(src, 1));
