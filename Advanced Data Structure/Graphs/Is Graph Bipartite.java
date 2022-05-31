@@ -71,7 +71,7 @@ public class Main {
          if(visited[rPair.v] != -1){
             //jo removed pair ka vertex hai uska old level visited me pada hai, aur new
             //level pair me pada hai
-            if(rPair.lvl != visited[rPair.v]){
+            if(rPair.lvl != visited[rPair.v]){ //odd cycle detected, not bipartite
                return false;
             }
          }
