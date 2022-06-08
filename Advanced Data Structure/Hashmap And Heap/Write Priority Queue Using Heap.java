@@ -70,7 +70,7 @@ public class Main {
         System.out.println("Underflow");
         return -1;
       }
-
+      
       return data.get(0); //return element at peek, as it has heighest priority
     }
 
