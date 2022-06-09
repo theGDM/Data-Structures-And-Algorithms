@@ -18,10 +18,10 @@ public class Main {
         data.add(val);
       }
 
-      for(int i = data.size() / 2 - 1; i >= 0; --i){ //TC : (n/2).1 + (n/4).2 + (n/8).3 + .... + 1 * log(n) = O(logn)
+      for(int i = data.size() / 2 - 1; i >= 0; --i){ //O(n) 
         downHeapify(i);
       }
-      //Overall TC : O(n) + O(logn) = O(n)
+   
     }
 
     public void add(int val) {
