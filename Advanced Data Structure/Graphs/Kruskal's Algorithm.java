@@ -53,17 +53,17 @@ public class Main {
 
       //priority queue, which will give the edge having the smallest weight first
       PriorityQueue<Edge> pq = new PriorityQueue<>();
-      for(int v = 0; v < vtces; ++v){
+      for(int v = 0; v < vtces; ++v){ //O(vlog(e))
         for(Edge e : graph[v]){
            pq.add(e);
         }
       }
 
       while(pq.size() > 0){
-         Edge e = pq.remove();
+         Edge e = pq.remove(); //O(log(e))
 
-         int srcLead = find(e.src);
-         int nbrLead = find(e.nbr);
+         int srcLead = find(e.src); //O(1)
+         int nbrLead = find(e.nbr); //O(1)
 
          if(srcLead != nbrLead){
             System.out.println(e.src + "-" + e.nbr + "@" + e.wt);
@@ -72,6 +72,7 @@ public class Main {
       }
    }
 
+   //log(1)
    public static void union(int s1l, int s2l){
       if(rank[s1l] < rank[s2l]){
          parent[s1l] = s2l;
