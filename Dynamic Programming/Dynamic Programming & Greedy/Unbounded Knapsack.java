@@ -60,22 +60,43 @@ import java.io.*;
 			// System.out.println(ans);
 
 			// tabulation
-			int[][] dp = new int[n + 1][cap + 1];
-			for(int idx = n; idx >= 0; --idx){
-				for(int c = 0; c <= cap; ++c){
-					if(idx == n || c == 0){
-						dp[idx][c] = 0;
-						continue;
-					}
-					int inc = 0, exc = 0;
-					if(c - wt[idx] >= 0){
-						inc = dp[idx][c - wt[idx]] + val[idx];
-					}
-					exc = dp[idx + 1][c];
-					dp[idx][c] = Math.max(inc, exc);
-				}
-			}
+			// int[][] dp = new int[n + 1][cap + 1];
+			// for(int idx = n; idx >= 0; --idx){
+			// 	for(int c = 0; c <= cap; ++c){
+			// 		if(idx == n || c == 0){
+			// 			dp[idx][c] = 0;
+			// 			continue;
+			// 		}
+			
+			// 		int inc = 0, exc = 0;
+			// 		if(c - wt[idx] >= 0){
+			// 			inc = dp[idx][c - wt[idx]] + val[idx];
+			// 		}
+			// 		exc = dp[idx + 1][c];
+			// 		dp[idx][c] = Math.max(inc, exc);
+			// 	}
+			// }
 
-			System.out.println(dp[0][cap]);
+			// System.out.println(dp[0][cap]);
+
+			// tabulation
+			int[] dp = new int[cap + 1];
+			dp[0] = 0; //capacity 0, will have 0 val
+			for(int bagc = 0; bagc <= cap; ++bagc){
+				int max = 0;
+				for(int i = 0; i < n; ++i){
+					if(wt[i] <= bagc){
+						int rbagc = bagc - wt[i];
+						int rbagv = dp[rbagc];
+						int tbagv = val[i] + rbagv; //total bag value
+
+						if(tbagv > max){
+							max = tbagv;
+						}
+					}
+				}
+				dp[bagc] = max; //update the maximum value that a current capacity bag can hold
+			}
+			System.out.println(dp[cap]);
 	    }
 	}
