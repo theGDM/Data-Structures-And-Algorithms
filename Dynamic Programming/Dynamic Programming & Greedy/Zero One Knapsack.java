@@ -10,6 +10,8 @@ public class Main {
         if(idx == n || cap == 0){
             return 0;
         }
+        //idx == n means there is no wt left to include, and cap == 0, means our bag is full
+        //now can not take any wt..
 
         int inc = 0, exc = 0;
         if(cap - w[idx] >= 0){
@@ -63,23 +65,47 @@ public class Main {
         // System.out.println(ans);
 
         // tabulation
+        // int[][] dp = new int[n + 1][cap + 1];
+        // for(int idx = n; idx >= 0; --idx){
+        //     for(int c = 0; c <= cap; ++c){
+        //         if(idx == n || c == 0){
+        //             dp[idx][c] = 0;
+        //             continue;
+        //         }
+
+        //         int inc = 0, exc = 0;
+        //         if(c - wt[idx] >= 0){
+        //             inc = dp[idx + 1][c - wt[idx]] + val[idx];
+        //         }
+        //         exc = dp[idx + 1][c];
+        //         dp[idx][c] = Math.max(inc, exc);
+        //     }
+        // }
+
+        // System.out.println(dp[0][cap]);
+
+        // tabulation
         int[][] dp = new int[n + 1][cap + 1];
-        for(int idx = n; idx >= 0; --idx){
-            for(int c = 0; c <= cap; ++c){
-                if(idx == n || c == 0){
-                    dp[idx][c] = 0;
+        for(int i = 0; i <= n; ++i){
+            for(int j = 0; j <= cap; ++j){
+                if(i == 0 || j == 0){
+                    dp[i][j] = 0;
                     continue;
                 }
 
-                int inc = 0, exc = 0;
-                if(c - wt[idx] >= 0){
-                    inc = dp[idx + 1][c - wt[idx]] + val[idx];
+                if(j >= wt[i - 1]){
+                    int rCap = j - wt[i - 1]; //remaining balls, after ith player bats, these remaining ball will be used by the i - 1 team to make maximum run!
+                    if(dp[i - 1][rCap] + val[i - 1] > dp[i - 1][j]){ //(i - 1) is the remaining team, and j is the total balls left
+                        dp[i][j] = dp[i - 1][rCap] + val[i - 1];
+                    }else{
+                        dp[i][j] = dp[i - 1][j];
+                    }
+                }else{
+                     dp[i][j] = dp[i - 1][j]; //when i doesn't bat, it will left all j balls to previous team i.e (i - 1)
                 }
-                exc = dp[idx + 1][c];
-                dp[idx][c] = Math.max(inc, exc);
             }
         }
 
-        System.out.println(dp[0][cap]);
+        System.out.println(dp[n][cap]);
     }
 }
