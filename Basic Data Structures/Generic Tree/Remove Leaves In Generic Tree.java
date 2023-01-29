@@ -148,6 +148,30 @@ public class Main {
       removeLeaves(child);
     }
   }
+  
+  public static void removeLeaves(Node node) {
+    if(node == null) return;
+    
+    for(int i = node.children.size() - 1; i >= 0; --i){
+        if(node.children.get(i).children.size() == 0){
+            node.children.remove(i);
+        }
+    }
+    
+    for(Node child : node.children){
+        removeLeaves(child);
+    }
+    ///////////////////////////////////////////////////
+    //2nd way
+    for(int i = node.children.size() - 1; i >= 0; --i){
+        Node child = node.children.get(i);
+        if(child.children.size() != 0){
+            removeLeaves(child);
+        }else{
+            node.children.remove(i);
+        }
+    }
+  }
 
   public static void main(String[] args) throws Exception {
     BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
