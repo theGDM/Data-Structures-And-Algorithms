@@ -1,5 +1,4 @@
 import java.util.*;
-
 public class Any_Base_Addition {
   public static void main(String[] args) {
     Scanner scn = new Scanner(System.in);
